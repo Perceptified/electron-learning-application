@@ -4,3 +4,5 @@ import Main from "./index"
 app.whenReady().then(() => {
     Main.main(app, BrowserWindow)
 })
+
+

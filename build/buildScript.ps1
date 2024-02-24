@@ -7,6 +7,7 @@ $directories = @{
     "ProjectRootDirectory" = $PSCommandPath + "/../../"
 }
 $directories.Add("Source", ($directories.ProjectRootDirectory + "/src"))
+$directories.Add("Pages"), ($directories.Source + "/pages")
 $directories.Add("Build", ($directories.ProjectRootDirectory + "/build"))
 $directories.Add("Debug", ($directories.Build + "/Debug"))
 $directories.Add("SourceData", ($directories.Source + "/data"))
@@ -20,7 +21,6 @@ $directories.Add("PlatformDataDirectories", @{})
 foreach($item in $osNames) {
     $directories.PlatformDataDirectories.Add(($item + "Data"), $directories.PlatformBinaryDirectories[$item] + "/" + "data")
 }
-Write-Host $directories.Keys $directories.Values
 function prepareDebugDirectory {
     Set-Location $directories.ProjectRootDirectory
     if(Test-Path $directories.Debug) {
@@ -47,6 +47,11 @@ function prepareReleaseDirectory {
 function buildDebug {
     cleanDirectory -directory $directories.Debug
     prepareDebugDirectory
+    $source = ($directories.Pages)
+    $source
+    $destination = ($directories.Debug + "/" + "pages/")
+    $destination
+    Copy-Item -Path $source -Destination $destination
     npx tsc --outDir $directories.Debug --sourceMap true
 }
 
