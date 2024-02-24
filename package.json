@@ -1,0 +1,25 @@
+{
+  "name": "electron-learning-application",
+  "version": "0.0.1",
+  "description": "Small application to learn electron and typescript further.",
+  "main": "index.js",
+  "scripts": {
+    "buildDebug" : "pwsh ./build/buildScript.ps1 'build debug'",
+    "runDebug" : "pwsh ./build/buildScript.ps1 'run debug'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Perceptified/electron-learning-application.git"
+  },
+  "author": "Markus Aigner (perceptified@gmail.com)",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Perceptified/electron-learning-application/issues"
+  },
+  "homepage": "https://github.com/Perceptified/electron-learning-application#readme",
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "typescript": "^5.3.3"
+  }
+}
