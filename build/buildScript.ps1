@@ -7,9 +7,10 @@ $directories = @{
     "ProjectRootDirectory" = $PSCommandPath + "/../../"
 }
 $directories.Add("Source", ($directories.ProjectRootDirectory + "/src"))
-$directories.Add("Pages"), ($directories.Source + "/pages")
+$directories.Add("Pages", ($directories.Source + "/pages"))
 $directories.Add("Build", ($directories.ProjectRootDirectory + "/build"))
 $directories.Add("Debug", ($directories.Build + "/Debug"))
+$directories.Add("DebugPages", ($directories.Debug + "/pages"))
 $directories.Add("SourceData", ($directories.Source + "/data"))
 $directories.Add("Release", ($directories.Build + "/Release"))
 $directories.Add("ReleaseBinaries", ($directories.Release + "/binaries"))
@@ -27,6 +28,7 @@ function prepareDebugDirectory {
         cleanDirectory -directory $directories.Debug
     }
     New-Item $directories.Debug -ItemType Directory
+    New-Item $directories.DebugPages -ItemType Directory
 }
 function prepareReleaseDirectory {
     Set-Location $directories.ProjectRootDirectory
@@ -47,11 +49,10 @@ function prepareReleaseDirectory {
 function buildDebug {
     cleanDirectory -directory $directories.Debug
     prepareDebugDirectory
-    $source = ($directories.Pages)
-    $source
-    $destination = ($directories.Debug + "/" + "pages/")
-    $destination
-    Copy-Item -Path $source -Destination $destination
+    $sourceFiles = Get-ChildItem $directories.Pages
+    $sourceFiles
+    $destination = ($directories.DebugPages + "/")
+    Copy-Item -Path $sourceFiles -Destination $destination
     npx tsc --outDir $directories.Debug --sourceMap true
 }
 

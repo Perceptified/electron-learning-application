@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "preLaunchTask": "BuildDebug",
+            "request": "launch",
+            "name": "Debug Main Process",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "program": "${workspaceRoot}/build/Debug/index.js",
+            "sourceMaps": true,
+            "runtimeArgs": [
+              // this args for attaching render process
+              "--remote-debugging-port=9222"
+            ],
+            "windows": {
+              "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+            },
+            //"protocol": "legacy"
+          }
+    ]
+  }
