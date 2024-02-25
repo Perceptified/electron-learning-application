@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <script type="text/javascript">
+      const { ipcRenderer } = require('electron');
+
+    </script>
     <title>Hello World!</title>
   </head>
   <body>
@@ -12,5 +16,10 @@
     Chromium <span id="chrome-version"></span>,
     and Electron <span id="electron-version"></span>.
     <p>and we may or may not have a HUGE DICK</p>
+    <script src="./renderer.js"></script>
+    <button id="stuffButton">
+      DONG
+    </button>
+    <p id="stuff"></p>
   </body>
 </html>

@@ -1,4 +1,6 @@
-import { app, BrowserWindow } from "electron"
+import { app, BrowserWindow } from "electron";
+import { IpcMain } from "electron";
+import * as path from "path";
 
 export default class Main {
     static mainWindow : Electron.BrowserWindow;
@@ -8,7 +10,10 @@ export default class Main {
     static createWindow() {
         let win = new BrowserWindow( {
             width: 800,
-            height: 600
+            height: 600,
+            webPreferences : {
+                preload : path.join(__dirname, "preload.js")
+            }
         })
         win.loadFile("./pages/index.html")
     }
@@ -27,7 +32,6 @@ export default class Main {
         Main.application.on("window-all-closed", Main.onWindowAllClosed);
     }
 }
-
 app.whenReady().then(() => {
     Main.createWindow()
 })
